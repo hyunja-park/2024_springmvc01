@@ -1,0 +1,18 @@
+필터와 인터셉터의 공통점과 차이점
+1) 공통점: 요청 및 응답을 가로채고 처리를 제어하는 역할
+	 로깅, 인증 및 인가, 인코딩 설정 등 반복적인 작업에 사용
+2) 차이점
+                               필터                                       인터셉터
+   적용                    web.xml  에서                    security-context.xml 에 설정
+                      웹 애플리케이션 전체                  스프링 컨텍스트내에서 작동
+   상속        java,serlet.Filter 인터페이스 상속      Handlerlnterceptor 인테페이스를 상속
+
+   동작         컨트롤러 전단계                             컨트롤러 이전, 이후
+               DispatcherSevlet 이전에
+
+
+================================================================
+
+servler-context.xml 시작
+
+LoginInterceptor.java

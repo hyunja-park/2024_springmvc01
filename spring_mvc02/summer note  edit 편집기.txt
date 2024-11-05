@@ -1,0 +1,60 @@
+summer note : edit 편집기
+- 홈페이지로 이동 : https://summernote.org/
+- getting start - 다운로드 (css, js) - 압축해제 후
+  resources - js 안에  lang 넣기
+                 js 안에 추가 summernote-lite.js
+                 js 안에 추가 summernote-lite.js.map
+
+               - css 안에 font 넣기 
+                 css 안에  추가 summernote-lite.css
+
+- 라이브러리 html에 추가하기 
+<link rel="stylesheet" href="resources/css/summernote-list.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
+<script src="resources/js/summernote-lite.js" ></script>
+<script src="resources/js/lang/summernote-ko-KR.js" ></script>
+
+- textarea 에 id 추가 
+$(function() {
+	$("#textarea 에 id").summernote({
+		lang : 'ko-KR',
+		height : 300,
+		focus : true,
+		placeholder : "최대 3000자까지 쓸 수 있습니다.",	
+callbacks : {
+					onImageUpload : function(files, editor) {
+						for (let i = 0; i < files.length; i++) {
+							sendImage(files[i], editor);
+						}
+					}
+				}
+	
+	});
+});
+
+	function sendImage(file, editor) {
+			// FormData 객체를 전송할 때 , jQuery가 설정
+		  let frm = new FormData();
+		  frm.append("s_file", file);
+		  $.ajax({
+			  url : "/saveImg",
+			  data : frm,
+			  method : "post",
+			  contentType : false,
+			  processData : false,
+			  cache : false,
+			  dataType : "json",
+			  success : function(data) {
+				 const path = data.path;
+				 const fname = data.fname ;
+				 console.log(path, fname);
+				 $("#gb2_content").summernote("editor.insertImage", path+"/"+fname);
+			  },
+			  error : function() {
+				alert("읽기실패");
+			}
+		  });
+		}
+
+
+
