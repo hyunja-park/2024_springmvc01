@@ -1,0 +1,67 @@
+svg파일-이미지
+
+
+cloudy-흐린
+cloudy-night-흐린밤
+day-맑음 낮
+drifting-snow-눈/짓눈개비
+night-밤
+raindrop-빗방울
+rainy-비가오는
+rainy-snowy- 비,눈
+shower-소나기
+snowy-눈
+
+
+현재-free-icon-01.png
+
+----------------------------------------------
+SKY
+icon_01  맑음
+icon_03  구름많음
+icon_04  흐림
+
+PTY
+icon_05  비
+icon_06  비/눈
+icon_07  눈
+icon_08  빗방울
+icon_09  빗방울
+icon_10  빗방울눈날림
+icon_11  눈날림
+
+
+ T1H : 기온(℃)
+ RN1 : 1시간 강수량(범주(1 mm))
+ SKY : 하늘상태(코드값)
+ UUU : 동서바람성분(m/s)
+ VVV : 남북바람성분(m/s)
+ REH : 습도(%)
+ PTY : 강수형태(코드값)
+ LGT : 낙뢰(코드값)
+ VEC : 풍향(deg)
+ WSD : 풍속(m/s)
+
+ 
+
+
+예)
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Using SVG as an image tag</title>
+    <link href="index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <img src="happy.svg" alt="My Happy SVG" />
+  </body>
+</html>
+
+
+
+예시)
+<body>
+    <object data="happy.svg" width="300" height="300"> </object>
+  </body>
+</html>

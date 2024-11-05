@@ -1,0 +1,41 @@
+/* Container styles */
+.weather-widget {
+    width: 200px;
+    background-color: #A7CAF9; /* Light blue background */
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  /* Temperature styling */
+  .weather-widget .temperature {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Status and location styling */
+  .weather-widget .status,
+  .weather-widget .location {
+    font-size: 18px;
+    margin: 5px 0;
+  }
+  
+  /* Feels like temperature styling */
+  .weather-widget .feels-like {
+    font-size: 14px;
+    color: #F2F2F2;
+    margin-top: 10px;
+  }
+  
+  /* Weather icon styling */
+  .weather-widget .weather-icon {
+    font-size: 50px;
+    color: #FFD700; /* Gold for sun icon */
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  
