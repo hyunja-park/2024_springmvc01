@@ -10,7 +10,6 @@ public class GuestBook2VO {
 	private MultipartFile gb2_file_name;
 	
 	
-	
 	public String getOdd_f_name() {
 		return odd_f_name;
 	}

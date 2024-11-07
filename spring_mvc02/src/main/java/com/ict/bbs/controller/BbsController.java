@@ -104,6 +104,10 @@ public class BbsController {
 		mv.addObject("paging", paging);
 		return mv;
 	}
+	@RequestMapping("/bbs2")
+	public ModelAndView getBbsList2(HttpServletRequest request) {
+		return new ModelAndView("bbs/ajax_list");
+	}
 
 	@GetMapping("/bbs_write")
 	public ModelAndView getBbsWrite() {

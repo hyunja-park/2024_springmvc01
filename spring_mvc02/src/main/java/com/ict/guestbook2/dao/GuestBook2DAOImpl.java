@@ -20,24 +20,21 @@ public class GuestBook2DAOImpl implements GuestBook2DAO{
 
 	@Override
 	public int getGuestBook2Insert(GuestBook2VO gb2vo) {
-		
 		return sqlSessionTemplate.insert("guestbook2.insert", gb2vo);
 	}
 
 	@Override
 	public GuestBook2VO getGusetBook2Detail(String gb2_idx) {		
-		return sqlSessionTemplate.selectOne("guestbook2.detail",gb2_idx);
+		return sqlSessionTemplate.selectOne("guestbook2.detail", gb2_idx);
 	}
 
 	@Override
-	public int getGuestBook2Update(GuestBook2VO gb2vo) {
-		
+	public int getGuestBook2Update(GuestBook2VO gb2vo) {		
 		return sqlSessionTemplate.update("guestbook2.update", gb2vo);
 	}
 
 	@Override
-	public int getGuestBook2Delete(String gb2_idx) {
-		
+	public int getGuestBook2Delete(String gb2_idx) {		
 		return sqlSessionTemplate.delete("guestbook2.delete", gb2_idx);
 	}
 

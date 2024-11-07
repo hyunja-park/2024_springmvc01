@@ -31,13 +31,11 @@ public class GuestBook2ServiceImpl implements GuestBook2Service {
 
 	@Override
 	public int getGuestBook2Update(GuestBook2VO gb2vo) {
-		// TODO Auto-generated method stub
 		return guestBook2DAO.getGuestBook2Update(gb2vo);
 	}
 
 	@Override
 	public int getGuestBook2Delete(String gb2_idx) {
-		// TODO Auto-generated method stub
 		return guestBook2DAO.getGuestBook2Delete(gb2_idx);
 	}
 

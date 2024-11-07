@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ict.guestbook2.dao.GuestBook2DAO;
 import com.ict.guestbook2.service.GuestBook2Service;
 import com.ict.guestbook2.vo.GuestBook2VO;
 
@@ -34,7 +33,6 @@ public class GuestBook2Controller {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
-	private String fname;
 
 	@GetMapping("/gb2_list")
 	public ModelAndView guestBook2List() {
@@ -74,28 +72,29 @@ public class GuestBook2Controller {
 			// 썸머노트 정보까지
 			// System.out.println("썸머노트정보 :" + gb2vo.getGb2_content());
 
-			String path = request.getSession().getServletContext().getRealPath("resources/upload");
+			String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 			MultipartFile file = gb2vo.getGb2_file_name();
 
 			if (file.isEmpty()) {
 				gb2vo.setGb2_f_name("");
 			} else {
+				// 파일이름에 랜덤 값을 파일이름에 추가하기
 				UUID uuid = UUID.randomUUID();
 				String f_name = uuid.toString() + "_" + file.getOriginalFilename();
-
+				gb2vo.setGb2_f_name(f_name);
+				
+				// 실질적인 파일 업로드
 				file.transferTo(new File(path, f_name));
 
 			}
 
 			// 비밀번호 암호화
-
 			String pwd = passwordEncoder.encode(gb2vo.getGb2_pw());
+			
 			gb2vo.setGb2_pw(pwd);
-
 			int result = guestBook2Service.getGuestBook2Insert(gb2vo);
 			if (result > 0) {
 				return mv;
-
 			}
 
 			return new ModelAndView("guestbook2/error");
@@ -111,12 +110,12 @@ public class GuestBook2Controller {
 	public void guestBook2Down(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String f_name = request.getParameter("f_name");
-			String path = request.getSession().getServletContext().getRealPath("resources/upload/" + f_name);
+			String path = request.getSession().getServletContext().getRealPath("/resources/upload/" + f_name);
 			String r_path = URLEncoder.encode(f_name, "UTF-8");
 
 			// 브라우저 설정
 			response.setContentType("application/x-msdownload");
-			response.setHeader("Content-Disposition", "attachment; filename" + r_path);
+			response.setHeader("Content-Disposition", "attachment; filename=" + r_path);
 
 			File file = new File(new String(path.getBytes(), "utf-8"));
 			FileInputStream in = new FileInputStream(file);
@@ -165,7 +164,7 @@ public class GuestBook2Controller {
 
 	@PostMapping("/gb2_update")
 	public ModelAndView guestbook2Update(@RequestParam("gb2_idx") String gb2_idx) {
-		ModelAndView mv = new ModelAndView("gusetbook/update");
+		ModelAndView mv = new ModelAndView("gusetbook2/update");
 		GuestBook2VO gb2vo = guestBook2Service.getGusetBook2Detail(gb2_idx);
 		if (gb2vo != null) {
 			mv.addObject("gb2vo", gb2vo);
@@ -190,7 +189,7 @@ public class GuestBook2Controller {
 			try {
 				String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 				MultipartFile file = gb2vo.getGb2_file_name();
-				String old_f_name = gb2vo.getGb2_f_name();
+				String old_f_name = gb2vo.getOdd_f_name();
 				
 				// 첨부파일 유무
 				if (file.isEmpty()) {
@@ -210,9 +209,9 @@ public class GuestBook2Controller {
 				int result = guestBook2Service.getGuestBook2Update(gb2vo);
 				if (result > 0) {
 					mv.setViewName("redirect:/gb2_detail?gb2_idx="+gb2vo.getGb2_idx());
-					return mv;
-									
+					return mv;									
 				}
+				
 				return new ModelAndView("gusetbook2/error");
 			} catch (Exception e) {
 				System.out.println(e);

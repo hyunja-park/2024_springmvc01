@@ -26,7 +26,7 @@ public class SummernoteAjaxController {
 			MultipartFile file = imgVO.getS_file();
 			String fname = null;
 			if (file.getSize()>0) {
-				String path = request.getSession().getServletContext().getRealPath("resources/upload");
+				String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 				UUID uuid = UUID.randomUUID();
 				fname = uuid.toString()+"_"+file.getOriginalFilename();
 				// 업로드
@@ -34,7 +34,7 @@ public class SummernoteAjaxController {
 			}
 			
 			map.put("path", "resources/upload");
-			map.put("fname", null);
+			map.put("fname", fname);
 			return map;
 			
 		} catch (Exception e) {
