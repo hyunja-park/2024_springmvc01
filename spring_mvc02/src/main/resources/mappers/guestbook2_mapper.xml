@@ -22,10 +22,9 @@
 	
 	<update id="update" parameterType="gb2vo">
 		update guestbook2
-		set gb2_name= #{gb2_name}, gb2_subject= #{gb2_subject}, gb2_content=#{gb2_content},
-		gb2_email= #{gb2_email}, gb2_f_name=#{gb2_f_name},
-		where gb2_idx
-		
+		set gb2_name = #{gb2_name}, gb2_subject = #{gb2_subject}, gb2_content = #{gb2_content},
+			gb2_email = #{gb2_email}, gb2_f_name = #{gb2_f_name}
+		where gb2_idx = #{gb2_idx}		
 	</update>
 		
 </mapper>

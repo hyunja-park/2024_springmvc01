@@ -16,9 +16,11 @@
 		select count(*) from bbs_t
 	</select>
 
-	<!-- 결과 행 제한하기 - LIMIT = 출력값을 제한함. (MySQL(MariaDB)과 PostgreSQL) SELECT 명령 
-		FROM 테이블명 LIMIT 행수 [OFFSET 시작행]; LIMIT 구는 SELECT 명령의 마지막에 지정하는 것으로 WHERE구나 
-		ORDER BY구의 뒤에 지정한다. -->
+	<!-- 결과 행 제한하기 - LIMIT = 출력값을 제한함. (MySQL(MariaDB)과 PostgreSQL) 
+		 SELECT 명령 FROM 테이블명 LIMIT 행수 [OFFSET 시작행]; 
+		 offset = limit * (현재페이지 - 1)
+		 LIMIT 구는 SELECT 명령의 마지막에 지정하는 것으로 WHERE구나 ORDER BY구의 뒤에 지정한다.
+	 -->
 		
 	<select id="pageList" parameterType="Map" resultType="bvo">
 		SELECT * FROM bbs_t order by b_idx desc limit #{limit} offset #{offset};
@@ -56,7 +58,6 @@
 		where b_idx = #{b_idx}
 	</update>
 </mapper>
-
 
 
 
